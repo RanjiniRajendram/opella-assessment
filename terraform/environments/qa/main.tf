@@ -57,6 +57,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
+  os_disk {
+  caching              = "ReadWrite"
+  storage_account_type = "Standard_LRS"
+}
 
   tags = local.common_tags
 }

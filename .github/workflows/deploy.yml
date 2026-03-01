@@ -80,8 +80,7 @@ jobs:
 
       - name: Check Documentation
         working-directory: terraform
-        run: terraform-docs markdown table --output-file README.md --output-mode=check
-
+        run: terraform-docs markdown table . --output-file README.md --output-mode=inject
   # ==============================================================================
   # Plan: Show changes (no apply on PR)
   # ==============================================================================

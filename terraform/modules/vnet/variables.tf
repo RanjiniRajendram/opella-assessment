@@ -25,9 +25,9 @@ variable "tags" {
   type = map(string)
 }
 
-# Optional list of NSG rules; if provided the module will create an NSG and apply them
+# This is an optional variable for nsg_rules
 variable "nsg_rules" {
-  description = "Optional list of network security group rules"
+  description = "Placeholder for NSG rules; rules are not created by this module"
   type = list(object({
     name                       = string
     priority                   = number

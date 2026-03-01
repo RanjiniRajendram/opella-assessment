@@ -12,7 +12,9 @@ resource "azurerm_subnet" "subnet" {
   name                 = each.key
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [each.value.address_prefix]
+  address_prefixes = [
+    each.value.address_prefix,
+  ]
 }
 
 resource "azurerm_network_security_group" "nsg" {
@@ -22,7 +24,9 @@ resource "azurerm_network_security_group" "nsg" {
   tags                = var.tags
 }
 
-# NSG rules are not created in this module, but it can be created for better security
+# NSG rules are not created by this module.  Consumers may add rules
+# separately (for example, in a wrapper module or with a separate
+# `azurerm_network_security_rule` resource) if desired.
 
 resource "azurerm_subnet_network_security_group_association" "assoc" {
   for_each = azurerm_subnet.subnet

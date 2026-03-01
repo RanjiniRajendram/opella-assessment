@@ -5,7 +5,7 @@ run "vnet_should_be_created" {
   variables {
     name                = "test-vnet"
     location            = "East US"
-    resource_group_name = "test-rg"
+    resource_group_name = "tfstate-rg"
     address_space       = ["10.0.0.0/16"]
     subnets             = {}
     tags                = {}

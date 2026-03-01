@@ -5,7 +5,7 @@ run "validate_required_outputs" {
     source = "../"
   }
 
-  variables = {
+  variables {
     name                = "uat-vnet"
     location            = "westus"
     resource_group_name = "uat-rg"
@@ -38,7 +38,7 @@ run "validate_address_space" {
     source = "../"
   }
 
-  variables = {
+  variables {
     name                = "prod-vnet"
     location            = "eastus"
     resource_group_name = "prod-rg"

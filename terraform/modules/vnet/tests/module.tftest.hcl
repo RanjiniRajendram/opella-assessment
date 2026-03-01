@@ -5,7 +5,7 @@ run "setup_test_environment" {
     source = "../"
   }
 
-  variables = {
+  variables {
     name                = "test-vnet"
     location            = "eastus"
     resource_group_name = "test-rg"
@@ -29,7 +29,7 @@ run "validate_vnet_creation" {
     source = "../"
   }
 
-  variables = {
+  variables {
     name                = "test-vnet"
     location            = "eastus"
     resource_group_name = "test-rg"

@@ -3,7 +3,7 @@ output "vnet_id" {
 }
 
 output "subnet_ids" {
-  value = { for k, s in azurerm_subnet.subnet : k => s.id }
+  value = { for k, subnet in azurerm_subnet.subnet : k => subnet.id }
 }
 
 output "nsg_id" {

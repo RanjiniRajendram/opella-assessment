@@ -46,7 +46,7 @@ resource "azurerm_storage_container" "container" {
   container_access_type = "private"
 }
 
-resource "azurerm_linux_virtual_machine" "this" {
+resource "azurerm_linux_virtual_machine" "vm" {
   name                = "${local.prefix}-vm"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location

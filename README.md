@@ -215,6 +215,33 @@ Azure Policies (in `terraform/policy/`) automatically inherit tags from the reso
 - Terraform native tests (Terraform 1.6+)
 - Policy-as-code for tagging enforcement
 
+## 🧭 Architectural Decisions
+
+- Reusable modules: `modules/vnet` encapsulates networking concerns and is parameterized for reuse across environments.
+- Environment isolation: separate folders per environment (`terraform/environments/<env>`) with separate backend keys to keep state isolated.
+- Remote state: Azure Storage Account is used for remote state to enable collaboration and locking via Azure's blob leases.
+- Native Terraform tests: using `terraform test` to validate module behavior as part of CI rather than only manual validation.
+- Documentation as code: `terraform-docs` and pre-commit hooks enforce up-to-date module documentation.
+- CI gating: PR validation (format, validate, test, docs) and protected `main` pushes for automated `dev/qa` deploys; production requires approval.
+
+## ✔️ Assessment — What's implemented in this repository
+
+- Reusable `vnet` module with native Terraform tests and generated docs.
+- Multi-environment layout with `dev`, `qa`, and `prod` folders and distinct backend keys.
+- GitHub Actions workflow to validate, plan, test, and (for non-prod) auto-apply changes.
+- Pre-commit hooks for `terraform fmt`, `terraform validate`, `tflint` and `terraform-docs` integration.
+- Azure Policy definitions included to enforce tagging standards and role assignments in `terraform/policy/`.
+
+## 🛡️ Recommendations for production
+
+- Identity & secrets: Use a least-privilege service principal for CI; consider Azure Managed Identities or a dedicated CI principal per environment. Keep secrets in GitHub Secrets or, preferably, Azure Key Vault with short-lived credentials.
+- State & locking: Ensure storage account uses secure settings (private endpoints, account-level encryption with CMK if required), enable blob soft-delete, and restrict access via RBAC. Consider Terraform Cloud/Enterprise for centralized state, locking, and policy enforcement.
+- Secure pipeline: Protect `main` branch, require PR reviews, and use GitHub environment protection rules (approvals, required reviewers) for `prod` deployments.
+- Policy & governance: Expand Azure Policy coverage and assign at the management group level for organization-wide enforcement. Integrate policy evaluation into CI gating where possible.
+- Observability & operations: Integrate Azure Monitor, diagnostic settings, and log export for auditing and alerting. Enable cost management and tagging audits.
+- Testing & validation: Add tfsec/tflint in CI, run integration/acceptance tests where possible, and include automated drift detection and scheduled plan validations.
+- Module lifecycle: Version and publish modules to a module registry (Terraform Registry or private registry) and reference pinned versions in environment configurations.
+
 ## 📝 Next Steps
 
 1. **Set up Azure resources:**

@@ -28,6 +28,8 @@ module "vnet" {
     app = { address_prefix = "10.0.1.0/24" }
   }
 
+  nsg_rules = []
+
   tags = local.common_tags
 }
 

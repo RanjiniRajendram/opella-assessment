@@ -135,7 +135,7 @@ jobs:
     name: Deploy - ${{ matrix.env }}
     runs-on: ubuntu-latest
     needs: [validate, test, plan]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request' == false
+    if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request' == true
 
     strategy:
       matrix:

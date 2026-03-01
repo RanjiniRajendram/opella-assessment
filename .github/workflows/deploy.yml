@@ -69,7 +69,9 @@ jobs:
 
       - name: Run Module Tests
         working-directory: terraform/modules/vnet
-        run: terraform test -verbose
+        run: |
+          terraform init -backend=false
+          terraform test -verbose
 
       - name: Install terraform-docs
         run: |

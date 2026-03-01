@@ -1,6 +1,6 @@
 run "vnet_should_be_created" {
 
-  command = plan
+  command = apply
 
   variables {
     name                = "test-vnet"

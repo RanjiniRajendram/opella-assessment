@@ -28,7 +28,7 @@ variable "tags" {
 # This is an optional variable for nsg_rules
 variable "nsg_rules" {
   description = "Placeholder for NSG rules; rules are not created by this module"
-  type        = list(object({
+  type = list(object({
     name                       = string
     priority                   = number
     direction                  = string

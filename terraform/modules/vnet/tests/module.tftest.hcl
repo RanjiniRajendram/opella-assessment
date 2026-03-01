@@ -31,19 +31,7 @@ run "setup_test_environment" {
       environment = "test"
       project     = "terraform-test"
     }
-    nsg_rules = [
-      {
-        name                       = "allow-ssh"
-        priority                   = 100
-        direction                  = "Inbound"
-        access                     = "Allow"
-        protocol                   = "Tcp"
-        source_port_range          = "*"
-        destination_port_range     = "22"
-        source_address_prefix      = "0.0.0.0/0"
-        destination_address_prefix = "*"
-      }
-    ]
+    # nsg_rules are not created by this module in tests; kept as a placeholder
   }
 
   providers = {

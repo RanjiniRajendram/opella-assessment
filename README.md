@@ -27,7 +27,7 @@ A professional, multi-environment Terraform setup for provisioning Azure infrast
 - **`modules/vnet`** – A reusable, tested Terraform module that creates:
   - Azure Virtual Network with configurable address space
   - Multiple subnets (driven by a map variable)
-  - Network Security Group with subnet associations
+  - Network Security Group with subnet associations (module does not create rules by default; a placeholder `nsg_rules` variable exists for consumers)
   - Exposes outputs for integration (vnet_id, subnet_ids, nsg_id)
 
 - **`environments/dev` and `environments/prod`** – Environment-specific configurations that:

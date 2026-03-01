@@ -135,7 +135,7 @@ jobs:
     name: Deploy - ${{ matrix.env }}
     runs-on: ubuntu-latest
     needs: [validate, test, plan]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/test'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     strategy:
       matrix:

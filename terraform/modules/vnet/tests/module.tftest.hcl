@@ -2,7 +2,7 @@ run "vnet_should_be_created" {
 
   command = plan
 
-  variables = {
+  variables {
     name                = "test-vnet"
     location            = "East US"
     resource_group_name = "test-rg"

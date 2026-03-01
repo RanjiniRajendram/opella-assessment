@@ -33,9 +33,11 @@ jobs:
       - name: Validate Syntax
         run: |
           for env in terraform/environments/*/; do
+            terraform -chdir=$env init -backend=false
             terraform -chdir=$env validate
           done
           for module in terraform/modules/*/; do
+            terraform -chdir=$module init -backend=false
             terraform -chdir=$module validate
           done
 

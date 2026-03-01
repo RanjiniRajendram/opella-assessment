@@ -1,0 +1,13 @@
+# Sample Terraform Plan Output (dev)
+
+This file is a placeholder showing how to capture the output of `terraform plan`.
+
+To generate your own plan in the dev environment, run:
+
+```bash
+cd terraform/environments/dev
+terraform init -backend=false       # local init for planning
+terraform plan -out=dev.tfplan > ../dev-plan.txt
+```
+
+The resulting `dev-plan.txt` contains the full plan; the binary `dev.tfplan` can be stored as an artifact.
